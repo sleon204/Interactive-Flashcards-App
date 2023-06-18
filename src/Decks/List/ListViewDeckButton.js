@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-export default function ViewDeckButton() {
+export default function ListViewDeckButton() {
   const { deckId } = useParams()
   return (
     <div>

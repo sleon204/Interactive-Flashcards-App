@@ -1,21 +1,20 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import ListDecks from '../Decks/ListDecks.js';
-import NotFound from '../Layout/NotFound.js';
-import CreateDeck from '../Decks/CreateDeckButton.js';
-import StudyDeck from '../Decks/StudyDeck.js';
-import ViewDeck from '../Decks/ViewDeck';
-
+import ListDecks from '../Decks/List/ListDecks';
+import NotFound from '../Layout/NotFound';
+import CreateDeckButton from './CreateDeckButton';
+import StudyDeck from '../Decks/Study/StudyDeck';
+import ViewDeck from '../Decks/View/ViewDeck';
+import Breadcrumbs from '../Layout/BreadCrumbs';
 
 export default function Home() {
-
-
 	return (
 		<div>
+			<Breadcrumbs />
 			<Switch>
 				<Route exact path="/">
 					<Link to="/decks/new" className="btn btn-secondary">
-						<CreateDeck />
+						<CreateDeckButton />
 					</Link>
 					<ListDecks />
 				</Route>
@@ -23,7 +22,7 @@ export default function Home() {
 					<StudyDeck />
 				</Route>
 				<Route path={`/decks/deckId`}>
-					<ViewDeck/>
+					<ViewDeck />
 				</Route>
 				<Route>
 					<NotFound />

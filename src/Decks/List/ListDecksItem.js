@@ -1,7 +1,7 @@
 import React from 'react';
-import ViewDeckButton from './ViewDeckButton';
-import StudyDeckButton from './StudyDeckButton';
-import DeleteDeckButton from './DeleteDeckButton';
+import ListViewDeckButton from './ListViewDeckButton';
+import ListStudyDeckButton from './ListStudyDeckButton';
+import ListDeleteDeckButton from './ListDeleteDeckButton';
 
 
 export default function ListDecksItem({ deck }) {
@@ -20,11 +20,11 @@ export default function ListDecksItem({ deck }) {
 			</div>
 			<div className="card-footer border d-flex justify-content-between">
 				<div className="d-flex">
-					<ViewDeckButton deckId={deck.id} />
-					<StudyDeckButton deckId={deck.id} />
+					<ListViewDeckButton deckId={deck.id} />
+					<ListStudyDeckButton deckId={deck.id} />
 				</div>
 				<div>
-					<DeleteDeckButton deckId={deck.id} />
+					<ListDeleteDeckButton deckId={deck.id} />
 				</div>
 			</div>
 		</div>

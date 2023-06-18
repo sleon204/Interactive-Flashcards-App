@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ListDecksItem from './ListDecksItem';
-import { listDecks } from '../utils/api/index';
+import { listDecks } from '../../utils/api/index';
 
 
 export default function ListDecks() {

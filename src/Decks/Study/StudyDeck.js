@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import StudyDeckItem from './StudyDeckItem';
+import StudyDeckLengthCheck from './StudyDeckLengthCheck';
 import { readDeck } from '../../utils/api/index';
 import { useParams } from 'react-router-dom';
 
@@ -33,7 +33,7 @@ export default function StudyDeck() {
 
 	return (
 		<div>
-			<StudyDeckItem deck={deck} />
+			<StudyDeckLengthCheck deck={deck} />
 		</div>
 	);
 }

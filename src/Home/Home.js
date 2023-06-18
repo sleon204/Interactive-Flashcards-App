@@ -4,6 +4,7 @@ import ListDecks from '../Decks/ListDecks.js';
 import NotFound from '../Layout/NotFound.js';
 import CreateDeck from '../Decks/CreateDeckButton.js';
 import StudyDeck from '../Decks/StudyDeck.js';
+import ViewDeck from '../Decks/ViewDeck';
 
 
 export default function Home() {
@@ -20,6 +21,9 @@ export default function Home() {
 				</Route>
 				<Route path={`/decks/:deckId/study`}>
 					<StudyDeck />
+				</Route>
+				<Route path={`/decks/deckId`}>
+					<ViewDeck/>
 				</Route>
 				<Route>
 					<NotFound />

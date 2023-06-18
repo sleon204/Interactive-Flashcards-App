@@ -31,7 +31,7 @@ export default function ListDecks() {
 
   return (
     <div className= " my-4">
-      {decks.map(deck => (
+      {decks.map((deck, index) => (
         <ListDecksItem key={deck.id} deck={deck} />
 
       ))}

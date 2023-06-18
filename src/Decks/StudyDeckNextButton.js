@@ -1,8 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import { Link } from 'react-router-dom';
 
-export default function StudyDeckNextButton() {
+export default function StudyDeckNextButton({ onNext }) {
   return (
-    <Link className="btn btn-primary">Next</Link>
+    <Link to="#" className="btn btn-primary" onClick={onNext}>
+      Next
+    </Link>
   )
 }

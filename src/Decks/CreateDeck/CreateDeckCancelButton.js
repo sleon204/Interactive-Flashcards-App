@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CreatDeckCancelButton() {
+export default function CreateDeckCancelButton() {
   return (
     <div>CreatDeckCancelButton</div>
   )

@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-export default function ListViewDeckButton() {
-  const { deckId } = useParams()
+export default function ListViewDeckButton({ deckId }) {
   return (
     <div>
       <Link to={`/decks/${deckId}`} className="btn btn-secondary">

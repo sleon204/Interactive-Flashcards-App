@@ -1,17 +1,22 @@
 import React from 'react';
+import StudyNotEnoughCardsAddButton from './StudyNotEnoughCardsAddButton';
 
-export default function StudyNotEnoughCards() {
+export default function StudyNotEnoughCards({ deck }) {
 	return (
-		<div>
-			<h3>Not Enough Cards</h3>
+		<div className='card'>
+      <div className='card-header'>
+			<h1>{deck.name}: Study</h1>
+      </div>
+      <div className='card-body text-center'>
 			<div>
-        Deck Name
+        <h2>Not Enough Cards</h2>
         </div>
 			<div>
-        Not enough cards.
+        <h5>You need at least 3 cards to study. There are 2 cards in this deck.</h5>
         </div>
-			<div>
-				You need at least 3 cards to study. There are 2 cards in this deck.
+        </div>
+			<div className='card-footer'>
+				<StudyNotEnoughCardsAddButton />
 			</div>
 		</div>
 	);

@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
-import ListDecks from '../Decks/List/ListDecks';
+import { Route, Switch } from 'react-router-dom';
+//layout
+import Breadcrumbs from '../Layout/BreadCrumbs';
 import NotFound from '../Layout/NotFound';
-import CreateDeckButton from './CreateDeckButton';
+//decks
+import CreateDeck from '../Decks/CreateDeck/CreateDeck';
+import CreateDeckButton from '../Decks/CreateDeck/CreateDeckButton';
+import ListDecks from '../Decks/List/ListDecks';
 import StudyDeck from '../Decks/Study/StudyDeck';
 import ViewDeck from '../Decks/View/ViewDeck';
-import Breadcrumbs from '../Layout/BreadCrumbs';
 
 export default function Home() {
 	return (
@@ -13,17 +16,19 @@ export default function Home() {
 			<Breadcrumbs />
 			<Switch>
 				<Route exact path="/">
-					<Link to="/decks/new" className="btn btn-secondary">
-						<CreateDeckButton />
-					</Link>
+					<CreateDeckButton />
 					<ListDecks />
 				</Route>
-				<Route path={`/decks/:deckId/study`}>
-					<StudyDeck />
+				<Route path="/decks/new">
+					<CreateDeck />
 				</Route>
 				<Route path={`/decks/deckId`}>
 					<ViewDeck />
 				</Route>
+				<Route path={`/decks/:deckId/study`}>
+					<StudyDeck />
+				</Route>
+
 				<Route>
 					<NotFound />
 				</Route>

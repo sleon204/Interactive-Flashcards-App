@@ -32,7 +32,7 @@ export default function StudyDeckItem({ deck }) {
 		<div className="card">
 			<div className="card-header">
 				<div className="float-left">
-					<h2>{`${deck.name}:&nbsp;Study`}</h2>
+					<h2>{`${deck.name}: Study`}</h2>
 				</div>
 			</div>
 			<div className="card-body">
@@ -57,7 +57,7 @@ export default function StudyDeckItem({ deck }) {
 			</div>
 			<div className="card-footer border d-flex justify-content-between">
 				<div className="d-flex">
-					<button className="btn btn-primary m-1" onClick={handleFlip}>
+					<button className="btn btn-secondary m-1" onClick={handleFlip}>
 						Flip
 					</button>
 					{currentCard ? (

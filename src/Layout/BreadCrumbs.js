@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 export default function Breadcrumbs() {
   const location = useLocation();
-  const paths = location.pathname.split('/').filter((path) => path !== '');
+  const paths = location.pathname.split('/').filter((path) => path !== '' && path !== 'decks');
 
   // Check if the current path is the root path ("/")
   if (paths.length === 0) {

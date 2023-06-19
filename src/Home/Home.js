@@ -7,7 +7,9 @@ import ListDecksItem from '../Decks/List/ListDecksItem';
 import CreateDeck from '../Decks/CreateDeck/CreateDeck';
 import StudyDeck from '../Decks/Study/StudyDeck';
 import ViewDeck from '../Decks/View/ViewDeck';
+import EditDeck from '../Decks/Edit/EditDeck';
 import NotFound from '../Layout/NotFound';
+import AddCard from '../Decks/Edit/AddCard';
 
 export default function Home() {
 	const [decks, setDecks] = useState([]);
@@ -38,6 +40,14 @@ export default function Home() {
 		setDecks([...decks, deck]);
 	}
 
+	function updateDeckInState(updatedDeck) {
+		setDecks((currentDecks) => {
+			return currentDecks.map((deck) => 
+				deck.id === updatedDeck.id ? updatedDeck : deck
+			);
+		});
+	}
+
 	return (
 		<div>
 			<Breadcrumbs decks={decks} setDecks={setDecks} />
@@ -47,13 +57,19 @@ export default function Home() {
 					<ListDecksItem decks={decks} setDecks={setDecks} />
 				</Route>
 				<Route path="/decks/new">
-				<CreateDeck addDeck={addDeck} />
+					<CreateDeck addDeck={addDeck} />
+				</Route>
+				<Route path={`/decks/:deckId/cards/new`}>
+					<AddCard decks={decks}/>
+				</Route>
+				<Route path={`/decks/:deckId/edit`}>
+					<EditDeck decks={decks} updateDeckInState={updateDeckInState} />
 				</Route>
 				<Route path={`/decks/:deckId/study`}>
-					<StudyDeck decks={decks} setDecks={setDecks}/>
+					<StudyDeck decks={decks} setDecks={setDecks} />
 				</Route>
 				<Route path={`/decks/:deckId`}>
-					<ViewDeck decks={decks} setDecks={setDecks}/>
+					<ViewDeck decks={decks} setDecks={setDecks} />
 				</Route>
 				<Route>
 					<NotFound />

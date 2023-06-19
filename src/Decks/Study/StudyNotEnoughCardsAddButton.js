@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
-export default function StudyNotEnoughCardsAddButton() {
+export default function StudyNotEnoughCardsAddButton({ deckId }) {
 	return (
 		<div>
-			<button className="btn btn-primary m-1">
-				Add Cards
-			</button>
+			<Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary m-1">
+				Add Card
+			</Link>
 		</div>
 	);
 }

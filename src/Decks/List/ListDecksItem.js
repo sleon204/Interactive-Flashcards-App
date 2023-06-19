@@ -3,7 +3,7 @@ import ListViewDeckButton from './ListViewDeckButton';
 import ListStudyDeckButton from './ListStudyDeckButton';
 import ListDeleteDeckButton from './ListDeleteDeckButton';
 
-export default function ListDecksItem({ decks, setDecks  }) {
+export default function ListDecksItem({ decks, setDecks }) {
 	return (
 		<div className="my-4">
 			{decks
@@ -14,7 +14,9 @@ export default function ListDecksItem({ decks, setDecks  }) {
 									<h2>{deck.name}</h2>
 								</div>
 								<div className="text-center">
-									<p>{`${deck.cards.length} Cards`}</p>
+									<div className="text-center">
+										<p>{`${deck.cards ? deck.cards.length : 0} Cards`}</p>
+									</div>
 								</div>
 							</div>
 							<div className="card-body text-center p-5">
@@ -22,15 +24,27 @@ export default function ListDecksItem({ decks, setDecks  }) {
 							</div>
 							<div className="card-footer border d-flex justify-content-between">
 								<div className="d-flex">
-									<ListViewDeckButton deckId={deck.id} decks={decks} setDecks={setDecks} />
-									<ListStudyDeckButton deckId={deck.id} decks={decks} setDecks={setDecks} />
+									<ListViewDeckButton
+										deckId={deck.id}
+										decks={decks}
+										setDecks={setDecks}
+									/>
+									<ListStudyDeckButton
+										deckId={deck.id}
+										decks={decks}
+										setDecks={setDecks}
+									/>
 								</div>
 								<div>
-									<ListDeleteDeckButton deckId={deck.id} decks={decks} setDecks={setDecks} />
+									<ListDeleteDeckButton
+										deckId={deck.id}
+										decks={decks}
+										setDecks={setDecks}
+									/>
 								</div>
 							</div>
 						</div>
-				))
+				  ))
 				: 'Loading decks...'}
 		</div>
 	);

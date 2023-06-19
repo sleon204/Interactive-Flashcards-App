@@ -22,7 +22,7 @@ export default function Home() {
 				<Route path="/decks/new">
 					<CreateDeck />
 				</Route>
-				<Route path={`/decks/:deckId`}>
+				<Route path={`/decks/deckId`}>
 					<ViewDeck />
 				</Route>
 				<Route path={`/decks/:deckId/study`}>

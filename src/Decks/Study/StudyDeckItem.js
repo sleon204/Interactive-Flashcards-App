@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import StudyDeckFlipButton from './StudyDeckFlipButton';
-import StudyDeckNextButton from './StudyDeckNextButton';
 import { useHistory } from 'react-router-dom';
 
 export default function StudyDeckItem({ deck }) {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [flipped, setFlipped] = useState(false);
-	const { name, cards } = deck;
+	const { cards } = deck;
 	const currentCard = cards && cards.length > 0 ? cards[currentIndex] : null;
 	const history = useHistory();
 
@@ -34,7 +32,7 @@ export default function StudyDeckItem({ deck }) {
 		<div className="card">
 			<div className="card-header">
 				<div className="float-left">
-					<h2>{name}: Study</h2>
+					<h2>{`${deck.name}:&nbsp;Study`}</h2>
 				</div>
 			</div>
 			<div className="card-body">
@@ -59,10 +57,14 @@ export default function StudyDeckItem({ deck }) {
 			</div>
 			<div className="card-footer border d-flex justify-content-between">
 				<div className="d-flex">
-					<StudyDeckFlipButton onFlip={handleFlip} />
+					<button className="btn btn-primary m-1" onClick={handleFlip}>
+						Flip
+					</button>
 					{currentCard ? (
 						flipped ? (
-							<StudyDeckNextButton onNext={handleNext} />
+							<button className="btn btn-primary m-1" onClick={handleNext}>
+								Next
+							</button>
 						) : null
 					) : null}
 				</div>

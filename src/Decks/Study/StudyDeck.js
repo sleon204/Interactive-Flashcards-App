@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import StudyDeckLengthCheck from './StudyDeckLengthCheck';
+import StudyDeckItem from './StudyDeckItem';
+import StudyNotEnoughCards from './StudyNotEnoughCards';
 import { readDeck } from '../../utils/api/index';
 import { useParams } from 'react-router-dom';
 
@@ -16,7 +17,6 @@ export default function StudyDeck() {
 			try {
 				const response = await readDeck(deckId, signal);
 				setDeck(response);
-				console.log(response);
 			} catch (error) {
 				if (error.name === 'AbortError') {
 					console.log('Aborted');
@@ -31,9 +31,17 @@ export default function StudyDeck() {
 		};
 	}, [deckId]);
 
-	return (
-		<div>
-			<StudyDeckLengthCheck deck={deck} />
-		</div>
-	);
+	if (deck && deck.cards && deck.cards.length >= 3) {
+		return (
+			<div>
+				<StudyDeckItem deck={deck} />
+			</div>
+		);
+	} else {
+		return (
+			<div>
+				<StudyNotEnoughCards deck={deck} />
+			</div>
+		);
+	}
 }

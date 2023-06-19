@@ -7,7 +7,6 @@ import ViewDecksItemCardsList from './ViewDecksItemCardsList';
 
 
 export default function ViewDeckItem({ deck }) {
-	console.log(deck.cards);
 	return (
 		<div>
 		<div className="card">

@@ -5,7 +5,7 @@ export default function StudyNotEnoughCards({ deck }) {
 	return (
 		<div className='card'>
       <div className='card-header'>
-			<h1>{deck.name}: Study</h1>
+			<h1>{deck.name}</h1>
       </div>
       <div className='card-body text-center'>
 			<div>

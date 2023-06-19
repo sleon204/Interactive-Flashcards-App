@@ -31,10 +31,11 @@ export default function ListDecks() {
 
   return (
     <div className= " my-4">
-      {decks.map((deck, index) => (
+      {decks ? decks.map((deck, index) => (
         <ListDecksItem key={deck.id} deck={deck} />
 
-      ))}
+      )) : 'Loading decks...'}
     </div>
   );
 }
+

@@ -33,7 +33,7 @@ export default function ViewDeck() {
 
 	return (
 		<div>
-			<ViewDeckItem deck={deck} />
+			<ViewDeckItem deck={deck} cards={deck.cards} />
 		</div>
 	);
 }

@@ -3,18 +3,21 @@ import ViewDeckEditButton from './ViewDeckEditButton';
 import ListStudyDeckButton from '../List/ListStudyDeckButton';
 import StudyNotEnoughCardsAddButton from '../Study/StudyNotEnoughCardsAddButton';
 import ListDeleteDeckButton from '../List/ListDeleteDeckButton';
+import ViewDecksItemCardsList from './ViewDecksItemCardsList';
 
 
 export default function ViewDeckItem({ deck }) {
+	console.log(deck.cards);
 	return (
+		<div>
 		<div className="card">
 			<div className="card-header">
-				<div className="float-left">
-					<p>{deck.name}</p>
+				<div className="text-center">
+					<h2>{deck.name}</h2>
 				</div>
 			</div>
 			<div className="card-body">
-				<p>{deck.description}</p>
+				<h5>{deck.description}</h5>
 			</div>
 			<div className="card-footer border d-flex justify-content-between">
 				<div className="d-flex">
@@ -26,6 +29,15 @@ export default function ViewDeckItem({ deck }) {
 					<ListDeleteDeckButton deckId={deck.id} />
 				</div>
 			</div>
+		</div>
+		<div> 
+		<div className="my-4">
+        {deck.cards ? deck.cards.map((card) => (
+          <ViewDecksItemCardsList key={card.id} card={card} length={deck.cards.length} />
+        )) : 'Loading cards...'}
+      </div>
+
+    </div>
 		</div>
 	);
 }

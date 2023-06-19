@@ -34,22 +34,26 @@ export default function Home() {
 		};
 	}, []);
 
+	function addDeck(deck) {
+		setDecks([...decks, deck]);
+	}
+
 	return (
 		<div>
-			<Breadcrumbs decks={decks} />
+			<Breadcrumbs decks={decks} setDecks={setDecks} />
 			<Switch>
 				<Route exact path="/">
 					<CreateDeckButton />
 					<ListDecksItem decks={decks} setDecks={setDecks} />
 				</Route>
 				<Route path="/decks/new">
-					<CreateDeck />
+				<CreateDeck addDeck={addDeck} />
 				</Route>
 				<Route path={`/decks/:deckId/study`}>
-					<StudyDeck />
+					<StudyDeck decks={decks} setDecks={setDecks}/>
 				</Route>
 				<Route path={`/decks/:deckId`}>
-					<ViewDeck />
+					<ViewDeck decks={decks} setDecks={setDecks}/>
 				</Route>
 				<Route>
 					<NotFound />

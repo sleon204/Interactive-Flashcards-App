@@ -3,8 +3,9 @@ import ViewDeckItem from './ViewDeckItem';
 import { readDeck } from '../../utils/api/index';
 import { useParams } from 'react-router-dom';
 
-export default function ViewDeck() {
+export default function ViewDeck({ decks, setDecks } ) {
 	const [deck, setDeck] = useState({});
+	
 
 	const { deckId } = useParams();
 
@@ -33,7 +34,7 @@ export default function ViewDeck() {
 
 	return (
 		<div>
-			<ViewDeckItem deck={deck} cards={deck.cards} />
+			<ViewDeckItem decks={decks} setDecks={setDecks} deck={deck} cards={deck.cards} />
 		</div>
 	);
 }

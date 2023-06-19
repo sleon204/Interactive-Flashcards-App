@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 export default function StudyDeck() {
 	const [deck, setDeck] = useState({});
+	const [loading, setLoading] = useState(true); // Set loading to true by default
 
 	const { deckId } = useParams();
 
@@ -15,6 +16,7 @@ export default function StudyDeck() {
 
 		async function fetchDeck() {
 			try {
+				setLoading(true);
 				const response = await readDeck(deckId, signal);
 				setDeck(response);
 			} catch (error) {
@@ -23,6 +25,8 @@ export default function StudyDeck() {
 				} else {
 					throw error;
 				}
+			} finally {
+				setLoading(false);
 			}
 		}
 		fetchDeck();
@@ -30,6 +34,10 @@ export default function StudyDeck() {
 			abortController.abort();
 		};
 	}, [deckId]);
+
+	if (loading) {
+		return <div>Loading...</div>; // This will be displayed while loading is true
+	}
 
 	if (deck && deck.cards && deck.cards.length >= 3) {
 		return (

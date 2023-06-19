@@ -22,8 +22,8 @@ export default function ListDecksItem({ decks, setDecks  }) {
 							</div>
 							<div className="card-footer border d-flex justify-content-between">
 								<div className="d-flex">
-									<ListViewDeckButton deckId={deck.id} />
-									<ListStudyDeckButton deckId={deck.id} />
+									<ListViewDeckButton deckId={deck.id} decks={decks} setDecks={setDecks} />
+									<ListStudyDeckButton deckId={deck.id} decks={decks} setDecks={setDecks} />
 								</div>
 								<div>
 									<ListDeleteDeckButton deckId={deck.id} decks={decks} setDecks={setDecks} />

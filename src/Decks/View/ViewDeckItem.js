@@ -6,7 +6,7 @@ import ListDeleteDeckButton from '../List/ListDeleteDeckButton';
 import ViewDecksItemCardsList from './ViewDecksItemCardsList';
 
 
-export default function ViewDeckItem({ deck }) {
+export default function ViewDeckItem({ decks, setDecks, deck }) {
 	return (
 		<div>
 		<div className="card">
@@ -25,7 +25,7 @@ export default function ViewDeckItem({ deck }) {
           <StudyNotEnoughCardsAddButton deckId={deck.id} />
 				</div>
 				<div>
-					<ListDeleteDeckButton deckId={deck.id} />
+					<ListDeleteDeckButton deckId={deck.id} decks={decks} setDecks={setDecks}  />
 				</div>
 			</div>
 		</div>

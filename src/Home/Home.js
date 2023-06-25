@@ -10,6 +10,7 @@ import ViewDeck from '../Decks/View/ViewDeck';
 import EditDeck from '../Decks/Edit/EditDeck';
 import NotFound from '../Layout/NotFound';
 import AddCard from '../Decks/Edit/AddCard';
+import EditCard from '../Decks/Edit/EditCard'
 
 export default function Home() {
 	const [decks, setDecks] = useState([]);
@@ -64,6 +65,9 @@ export default function Home() {
 				</Route>
 				<Route path={`/decks/:deckId/edit`}>
 					<EditDeck decks={decks} updateDeckInState={updateDeckInState} />
+				</Route>
+				<Route path={"/decks/:deckId/cards/:cardId/edit"}>
+					<EditCard decks={decks}/>
 				</Route>
 				<Route path={`/decks/:deckId/study`}>
 					<StudyDeck decks={decks} setDecks={setDecks} />

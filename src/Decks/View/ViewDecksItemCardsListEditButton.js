@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function ViewDecksItemCardsListEditButton() {
-	return (
-		<div>
-			<Link to="/decks/:deckId/edit" className="btn btn-secondary m-1">
-				Edit Deck
-			</Link>
-		</div>
-	);
+export default function ViewDecksItemCardsListEditButton({ deckId, cardId }) {
+  const editCardUrl = `/decks/${deckId}/cards/${cardId}/edit`;
+
+  return (
+    <div>
+      <Link to={editCardUrl} className="btn btn-secondary m-1">
+        Edit Card
+      </Link>
+    </div>
+  );
 }

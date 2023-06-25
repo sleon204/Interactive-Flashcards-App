@@ -2,7 +2,7 @@ import React from 'react'
 import ViewDecksItemCardsListDeleteButton from './ViewDecksItemCardsListDeleteButton';
 import ViewDecksItemCardsListEditButton from './ViewDecksItemCardsListEditButton';
 
-export default function ViewDecksItemCardsList( {card, length} ) {
+export default function ViewDecksItemCardsList( { deck, card, length} ) {
   return (
 		<div className="card">
 			<div className="card-header">
@@ -26,7 +26,7 @@ export default function ViewDecksItemCardsList( {card, length} ) {
 			</div>
 			<div className="card-footer border d-flex justify-content-end">
 				<div>
-        <ViewDecksItemCardsListEditButton cardId={card.id} />
+        <ViewDecksItemCardsListEditButton deckId={deck.id} cardId={card.id} />
 
 				</div>
 				<div>

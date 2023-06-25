@@ -32,7 +32,7 @@ export default function ViewDeckItem({ decks, setDecks, deck }) {
 		<div> 
 		<div className="my-4">
         {deck.cards ? deck.cards.map((card) => (
-          <ViewDecksItemCardsList key={card.id} card={card} length={deck.cards.length} />
+          <ViewDecksItemCardsList key={card.id} deck={deck} card={card} length={deck.cards.length} />
         )) : 'Loading cards...'}
       </div>
 

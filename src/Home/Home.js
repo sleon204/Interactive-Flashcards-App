@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { listDecks } from '../utils/api/index';
 import Breadcrumbs from '../Layout/BreadCrumbs';
 import CreateDeckButton from '../Decks/CreateDeck/CreateDeckButton';
-import ListDecksItem from '../Decks/List/ListDecksItem';
+import ListDecks from '../Decks/List/ListDecks';
 import CreateDeck from '../Decks/CreateDeck/CreateDeck';
 import StudyDeck from '../Decks/Study/StudyDeck';
 import ViewDeck from '../Decks/View/ViewDeck';
@@ -55,7 +55,7 @@ export default function Home() {
 			<Switch>
 				<Route exact path="/">
 					<CreateDeckButton />
-					<ListDecksItem decks={decks} setDecks={setDecks} />
+					<ListDecks decks={decks} setDecks={setDecks} />
 				</Route>
 				<Route path="/decks/new">
 					<CreateDeck addDeck={addDeck} />

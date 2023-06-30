@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { readDeck } from '../../utils/api/index';
-import ListStudyDeckButton from "../List/ListStudyDeckButton"
-import ListDeleteDeckButton from "../List/ListDeleteDeckButton"
-import StudyNotEnoughCardsAddButton from "../Study/StudyNotEnoughCardsAddButton"
-
+import { useParams, Link, useHistory } from 'react-router-dom';
+import { readDeck, deleteDeck } from '../../utils/api/index';
+import StudyNotEnoughCardsAddButton from "../Study/StudyDeck"
 
 export default function ViewDeck({ decks, setDecks }) {
   const [deck, setDeck] = useState({});
   const { deckId } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -35,6 +33,21 @@ export default function ViewDeck({ decks, setDecks }) {
     };
   }, [deckId]);
 
+  const handleDelete = async () => {
+    if (
+      window.confirm(
+        'Are you sure you want to delete this deck? This cannot be undone.'
+      )
+    ) {
+      await deleteDeck(deckId);
+
+      const updatedDecks = decks.filter((deck) => deck.id !== deckId);
+      setDecks(updatedDecks);
+
+      history.push('/');
+    }
+  };
+
   return (
     <div>
       <div className="card">
@@ -48,12 +61,16 @@ export default function ViewDeck({ decks, setDecks }) {
         </div>
         <div className="card-footer border d-flex justify-content-between">
           <div className="d-flex">
-            <ViewDeckEditButton deckId={deck.id} />
-            <ListStudyDeckButton deckId={deck.id} />
+            <Link to={`/decks/${deckId}/edit`} className="btn btn-secondary m-1">
+              Edit
+            </Link>
+            <Link to={`/decks/${deckId}/study`} className="btn btn-primary m-1">
+              Study
+            </Link>
             <StudyNotEnoughCardsAddButton deckId={deck.id} />
-          </div>
-          <div>
-            <ListDeleteDeckButton deckId={deck.id} decks={decks} setDecks={setDecks} />
+            <button onClick={handleDelete} className="btn btn-danger m-1">
+              Delete Deck
+            </button>
           </div>
         </div>
       </div>
@@ -71,9 +88,6 @@ export default function ViewDeck({ decks, setDecks }) {
           <p>Loading cards...</p>
         )}
       </div>
-      <Link to={`/decks/${deckId}/edit`} className="btn btn-secondary m-1">
-        Edit
-      </Link>
     </div>
   );
 }
@@ -127,13 +141,5 @@ export function ViewDecksItemCardsListEditButton({ deckId, cardId }) {
         Edit Card
       </Link>
     </div>
-  );
-}
-
-export function ViewDeckEditButton({ deckId }) {
-  return (
-    <Link to={`/decks/${deckId}/edit`} className="btn btn-secondary m-1">
-      Edit
-    </Link>
   );
 }

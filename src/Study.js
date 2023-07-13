@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { readDeck } from './utils/api/index';
+import Breadcrumbs from './Layout/Breadcrumbs';
 
 function Study() {
   const { deckId } = useParams();
@@ -46,43 +47,38 @@ function Study() {
 
   if (deck.cards.length < 3) {
     return (
-      <div className='text-center'>
+      <div className="text-center">
         <h2>{deck.name}</h2>
-        <div className='card '>
-          <div  className='card-header'>
+        <div className="card ">
+          <div className="card-header">
             <h4>Not enough cards</h4>
           </div>
-          <div className='card-body'> 
+          <div className="card-body">
             <p>
-              You need at least 3 cards to study. There are {deck.cards.length} cards
-              in this deck.
+              You need at least 3 cards to study. There are {deck.cards.length} cards in this deck.
             </p>
           </div>
-          <div className='card-footer'>
-            <Link className='btn btn-primary' to={`/decks/${deck.id}/cards/new`}>Add Cards</Link>
+          <div className="card-footer">
+            <Link className="btn btn-primary" to={`/decks/${deck.id}/cards/new`}>
+              Add Cards
+            </Link>
           </div>
         </div>
       </div>
     );
   }
 
+  const breadcrumbsLinks = [
+    { label: 'Home', url: '/' },
+    { label: 'Deck', url: `/decks/${deckId}` },
+    { label: 'Study', url: `/decks/${deckId}/study` },
+  ];
+
   return (
     <div className="card text-center">
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
-          </li>
-          <li className="breadcrumb-item active" aria-current="page">
-            Study
-          </li>
-        </ol>
-      </nav>
+      <Breadcrumbs links={breadcrumbsLinks} />
       <div className="card-header">
-        <div className="">
+        <div className="deck-info">
           <h2>{deck.name}</h2>
           <p>
             Card {currentCard + 1} of {deck.cards.length}

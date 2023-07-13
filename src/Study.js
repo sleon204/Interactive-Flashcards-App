@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { readDeck } from './utils/api/index';
-import Breadcrumbs from './Layout/Breadcrumbs';
+import BreadCrumbs from './Layout/Breadcrumbs';
 
 function Study() {
   const { deckId } = useParams();
@@ -76,7 +76,7 @@ function Study() {
 
   return (
     <div className="card text-center">
-      <Breadcrumbs links={breadcrumbsLinks} />
+      <BreadCrumbs links={breadcrumbsLinks} />
       <div className="card-header">
         <div className="deck-info">
           <h2>{deck.name}</h2>

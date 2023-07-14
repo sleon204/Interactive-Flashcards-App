@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { readCard, updateCard, readDeck } from './utils/api/index';
+import CardForm from './CardForm';
 
 function EditCard() {
   const [front, setFront] = useState('');
@@ -56,49 +57,15 @@ function EditCard() {
         <div className="card-header">
           <h3>{deckName}</h3>
         </div>
-        <form onSubmit={handleSubmit}>
-          <div className="d-flex">
-            <div className="card w-50">
-              <div className="card-header">
-                <label htmlFor="front">
-                  <h4>Front</h4>
-                </label>
-              </div>
-              <textarea
-                id="front"
-                name="front"
-                onChange={handleFrontChange}
-                value={front}
-              />
-            </div>
-
-            <div className="card w-50">
-              <div className="card-header">
-                <label htmlFor="back">
-                  <h4>Back</h4>
-                </label>
-              </div>
-              <textarea
-                id="back"
-                name="back"
-                onChange={handleBackChange}
-                value={back}
-              />
-            </div>
-          </div>
-          <div className="card-footer d-flex justify-content-between">
-            <button
-              className="btn btn-secondary"
-              type="button"
-              onClick={handleCancel}
-            >
-              Cancel
-            </button>
-            <button className="btn btn-primary" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
+        <CardForm
+          front={front}
+          back={back}
+          handleFrontChange={handleFrontChange}
+          handleBackChange={handleBackChange}
+          handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
+          handleCancelType="edit"
+        />
       </div>
     </div>
   );

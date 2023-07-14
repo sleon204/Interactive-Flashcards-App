@@ -67,10 +67,19 @@ function NewCard() {
           back={back}
           handleFrontChange={handleFrontChange}
           handleBackChange={handleBackChange}
-          handleSubmit={handleSubmit}
-          handleCancel={handleCancel}
-          handleCancelType="create"
         />
+        <div className="card-footer d-flex justify-content-between">
+          <button
+            className="btn btn-secondary"
+            type="button"
+            onClick={handleCancel}
+          >
+            Done
+          </button>
+          <button className="btn btn-primary" type="submit" onClick={handleSubmit}>
+            Save
+          </button>
+        </div>
       </div>
     </div>
   );

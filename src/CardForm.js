@@ -1,8 +1,8 @@
 import React from 'react';
 
-function CardForm({ front, back, handleFrontChange, handleBackChange, handleSubmit, handleCancel }) {
+function CardForm({ front, back, handleFrontChange, handleBackChange }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className="d-flex">
         <div className="card d-flex flex-column w-50">
           <div className="card-header">
@@ -31,18 +31,6 @@ function CardForm({ front, back, handleFrontChange, handleBackChange, handleSubm
             value={back}
           />
         </div>
-      </div>
-      <div className="card-footer d-flex justify-content-between">
-        <button
-          className="btn btn-secondary"
-          type="button"
-          onClick={handleCancel}
-        >
-          {handleCancel === 'create' ? 'Done' : 'Cancel'}
-        </button>
-        <button className="btn btn-primary" type="submit">
-          {handleCancel === 'create' ? 'Save' : 'Submit'}
-        </button>
       </div>
     </form>
   );

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
-import { readCard, updateCard,  } from './utils/api/index';
+import { readCard, updateCard, readDeck } from './utils/api/index';
 import CardForm from './CardForm';
 
 function EditCard() {
   const [card, setCard] = useState(null);
   const [front, setFront] = useState('');
   const [back, setBack] = useState('');
+  const [deckName, setDeckName] = useState('');
   const history = useHistory();
   const { deckId, cardId } = useParams();
 
@@ -17,13 +18,16 @@ function EditCard() {
         setCard(cardFromAPI);
         setFront(cardFromAPI.front);
         setBack(cardFromAPI.back);
+
+        const deck = await readDeck(deckId);
+        setDeckName(deck.name);
       } catch (error) {
         console.error(error);
       }
     };
 
     loadCardAndDeck();
-  }, [cardId]);
+  }, [cardId, deckId]);
 
   const handleFrontChange = (event) => setFront(event.target.value);
   const handleBackChange = (event) => setBack(event.target.value);
@@ -51,17 +55,17 @@ function EditCard() {
             <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={`/decks/${deckId}`}>{card.deckName}</Link>
+            <Link to={`/decks/${deckId}`}>{deckName}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            Edit Card {card.id}
+            Edit Card {cardId}
           </li>
         </ol>
       </nav>
       <h2>Edit Card</h2>
       <div className="card">
         <div className="card-header">
-          <h3>{card.deckName}</h3>
+          <h3>{deckName}</h3>
         </div>
         <CardForm
           front={front}

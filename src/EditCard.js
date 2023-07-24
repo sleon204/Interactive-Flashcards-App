@@ -1,10 +1,8 @@
-import React, { useState, useEffect, startTransition } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { readCard, updateCard, readDeck } from './utils/api/index';
-import CardForm from './CardForm';
 
 function EditCard() {
-  const [card, setCard] = useState(null);
   const [front, setFront] = useState('');
   const [back, setBack] = useState('');
   const [deckName, setDeckName] = useState('');
@@ -13,17 +11,12 @@ function EditCard() {
 
   useEffect(() => {
     const loadCardAndDeck = async () => {
-      try {
-        const cardFromAPI = await readCard(cardId);
-        setCard(cardFromAPI);
-        setFront(cardFromAPI.front);
-        setBack(cardFromAPI.back);
+      const cardToEdit = await readCard(cardId);
+      setFront(cardToEdit.front);
+      setBack(cardToEdit.back);
 
-        const deck = await readDeck(deckId);
-        setDeckName(deck.name);
-      } catch (error) {
-        console.error(error);
-      }
+      const deck = await readDeck(deckId);
+      setDeckName(deck.name);
     };
 
     loadCardAndDeck();
@@ -34,18 +27,14 @@ function EditCard() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const updatedCard = { ...card, front, back };
-    await updateCard(updatedCard);
+    const cardToUpdate = { id: cardId, front, back, deckId: Number(deckId) };
+    await updateCard(cardToUpdate);
     history.push(`/decks/${deckId}`);
   };
 
   const handleCancel = () => {
     history.push(`/decks/${deckId}`);
   };
-
-  if (!card) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="text-center">
@@ -63,28 +52,53 @@ function EditCard() {
         </ol>
       </nav>
       <h2>Edit Card</h2>
-      <div className="card">
+      <div className="card ">
         <div className="card-header">
           <h3>{deckName}</h3>
         </div>
-        <CardForm
-          front={front}
-          back={back}
-          handleFrontChange={handleFrontChange}
-          handleBackChange={handleBackChange}
-        />
-        <div className="card-footer d-flex justify-content-between">
-          <button
-            className="btn btn-secondary"
-            type="button"
-            onClick={handleCancel}
-          >
-            Cancel
-          </button>
-          <button className="btn btn-primary" type="submit" onClick={handleSubmit}>
-            Submit
-          </button>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="d-flex">
+            <div className="card w-50">
+              <div className="card-header">
+                <label htmlFor="front">
+                  <h4>Front</h4>
+                </label>
+              </div>
+              <textarea
+                id="front"
+                name="front"
+                onChange={handleFrontChange}
+                value={front}
+              />
+            </div>
+
+            <div className="card w-50">
+              <div className="card-header">
+                <label htmlFor="back">
+                  <h4>Back</h4>
+                </label>
+              </div>
+              <textarea
+                id="back"
+                name="back"
+                onChange={handleBackChange}
+                value={back}
+              />
+            </div>
+          </div>
+          <div className="card-footer d-flex justify-content-between">
+            <button
+              className="btn btn-secondary"
+              type="button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+            <button className="btn btn-primary" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

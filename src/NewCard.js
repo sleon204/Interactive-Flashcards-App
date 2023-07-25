@@ -29,10 +29,11 @@ function NewCard() {
     event.preventDefault();
     const newCard = { front, back, deckId: deck.id };
     await createCard(deck.id, newCard);
-    history.push(`/decks/${deck.id}`);
+    setFront('');
+    setBack('');
   };
 
-  const handleCancel = () => {
+  const handleDone = () => {
     history.push(`/decks/${deck.id}`);
   };
 
@@ -95,7 +96,7 @@ function NewCard() {
             <button
               className="btn btn-secondary"
               type="button"
-              onClick={handleCancel}
+              onClick={handleDone}
             >
               Done
             </button>
